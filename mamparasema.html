@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAMPARA S.E.M.A. — Mamparas & Espejos Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black:   #080C12;
+    --dark:    #0D1420;
+    --panel:   #111824;
+    --blue:    #1A6DFF;
+    --blue2:   #0F4EC9;
+    --blueglow:#1A6DFF33;
+    --white:   #FFFFFF;
+    --offwhite:#E8EDF5;
+    --muted:   #6B7A99;
+    --border:  #1C2A42;
+    --display: 'Bebas Neue', sans-serif;
+    --body:    'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5vw;
+    background: rgba(8,12,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    font-family: var(--body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--blue2); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5vw 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, var(--blueglow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.6); }
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .hero p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--offwhite);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 520px;
+  }
+  .mirror-frame {
+    position: absolute;
+    width: 280px; height: 420px;
+    border: 2px solid var(--blue);
+    background: linear-gradient(145deg, #111824 0%, #0D1420 40%, #1A2540 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .mirror-frame::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(26,109,255,0.25);
+    pointer-events: none;
+  }
+  .mirror-frame::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 30%; right: 30%; height: 50%;
+    background: linear-gradient(180deg, rgba(26,109,255,0.07) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .mirror-reflection {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(180deg,
+      rgba(26,109,255,0.04) 0%,
+      rgba(26,109,255,0.02) 50%,
+      transparent 100%
+    );
+  }
+  .mirror-led {
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--blue);
+    box-shadow: 0 0 20px var(--blue), 0 0 40px rgba(26,109,255,0.4);
+  }
+  .mirror-label {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    text-align: center;
+  }
+  .mirror-frame-2 {
+    position: absolute;
+    right: 0; top: 30px;
+    width: 180px; height: 320px;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, #0D1420 0%, #111824 100%);
+    opacity: 0.7;
+  }
+  .mirror-frame-3 {
+    position: absolute;
+    left: 0; bottom: 20px;
+    width: 140px; height: 200px;
+    border: 1px solid rgba(26,109,255,0.15);
+    background: linear-gradient(145deg, #111824 0%, #0D1420 100%);
+    opacity: 0.5;
+  }
+  .grid-dot {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image:
+      radial-gradient(circle, rgba(26,109,255,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.75rem 5vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.2rem;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--blue);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 5vw; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--blue);
+  }
+  h2.section-title {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    color: var(--white);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── PRODUCTOS ── */
+  .products { background: var(--dark); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+  .product-card {
+    background: var(--dark);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .product-card:hover { background: var(--panel); }
+  .product-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .product-card:hover::after { transform: scaleX(1); }
+  .product-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    transition: border-color 0.3s;
+  }
+  .product-card:hover .product-icon { border-color: var(--blue); }
+  .product-card h3 {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .product-card p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .product-tag {
+    display: inline-flex;
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    gap: 0.3rem;
+    align-items: center;
+  }
+  .product-tag::after { content: '→'; }
+
+  /* ── POR QUÉ ── */
+  .why { background: var(--black); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .why-list { display: flex; flex-direction: column; gap: 1.75rem; }
+  .why-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .why-num {
+    font-family: var(--display);
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+  }
+  .why-content h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .why-content p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .why-visual {
+    position: relative;
+    height: 420px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .why-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 60%, var(--panel) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 47px, var(--border) 47px, var(--border) 48px),
+      repeating-linear-gradient(90deg, transparent, transparent 47px, var(--border) 47px, var(--border) 48px);
+    opacity: 0.4;
+  }
+  .why-badge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(8,12,18,0.9);
+    border: 1px solid var(--blue);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .why-badge-dot {
+    width: 8px; height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .why-badge-text { font-size: 0.85rem; font-weight: 300; color: var(--offwhite); }
+  .why-badge-text strong { color: var(--blue); font-weight: 500; }
+  .why-visual-text {
+    font-family: var(--display);
+    font-size: 4rem;
+    color: rgba(26,109,255,0.08);
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.2;
+    user-select: none;
+  }
+
+  /* ── PROCESO ── */
+  .process { background: var(--dark); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), var(--blue), var(--border));
+  }
+  .step {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .step-circle {
+    width: 64px; height: 64px;
+    border: 1px solid var(--border);
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+  .step:nth-child(2) .step-circle { border-color: var(--blue); background: rgba(26,109,255,0.08); }
+  .step-num {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: var(--muted);
+  }
+  .step:nth-child(2) .step-num { color: var(--blue); }
+  .step h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .step p {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── TESTIMONIOS ── */
+  .reviews { background: var(--black); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: border-color 0.25s;
+  }
+  .review-card:hover { border-color: rgba(26,109,255,0.4); }
+  .review-stars { display: flex; gap: 3px; }
+  .star { color: var(--blue); font-size: 0.9rem; }
+  .review-text {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--offwhite);
+    line-height: 1.75;
+    font-style: italic;
+  }
+  .review-author {
+    display: flex; gap: 0.75rem; align-items: center;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .review-avatar {
+    width: 36px; height: 36px;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+  .review-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .review-loc {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 7rem 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse at center, var(--blueglow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: var(--display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--white);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .cta-section h2 span { color: var(--blue); }
+  .cta-section p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 460px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.75;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5vw;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 0.75rem; }
+  .footer-brand p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .footer-col h5 {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--offwhite);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul a {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--blue); }
+  .footer-bottom {
+    background: var(--black);
+    padding: 1.25rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  }
+  .wa-float:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1      { animation-delay: 0.2s; }
+  .hero p       { animation-delay: 0.35s; }
+  .hero-actions { animation-delay: 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 8rem; }
+    .hero-visual { height: 320px; }
+    .mirror-frame { width: 200px; height: 300px; }
+    .stats-strip { grid-template-columns: repeat(2,1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .products-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-visual { height: 280px; }
+    .process-steps { grid-template-columns: repeat(2,1fr); }
+    .process-steps::before { display: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MAMPARA<span>SEMA</span></div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank">
+    <button class="nav-cta">Pedir presupuesto</button>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fabricación a medida</div>
+    <h1>MAMPARAS<br>& <em>ESPEJOS</em><br>PREMIUM</h1>
+    <p>Diseño, fabricación e instalación de mamparas para baño y espejos a medida. Calidad premium, instalación incluida.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" class="btn-primary">
+        Pedir presupuesto →
+      </a>
+      <a href="#productos" class="btn-secondary">Ver productos</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="grid-dot"></div>
+    <div class="mirror-frame-3"></div>
+    <div class="mirror-frame-2"></div>
+    <div class="mirror-frame">
+      <div class="mirror-led"></div>
+      <div class="mirror-reflection"></div>
+      <div class="mirror-label">LED TOUCH</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-num">+500</span>
+    <span class="stat-label">Proyectos realizados</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">10+</span>
+    <span class="stat-label">Años de experiencia</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">48hs</span>
+    <span class="stat-label">Tiempo de entrega</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Garantía de fabricación</span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="products" id="productos">
+  <div class="section-tag">Catálogo</div>
+  <h2 class="section-title">NUESTROS<br>PRODUCTOS</h2>
+  <p class="section-sub">Fabricamos a medida exacta. Cada pieza es única, diseñada para el espacio de tu cliente.</p>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-icon">🚿</div>
+      <h3>MAMPARAS DE BAÑO</h3>
+      <p>Mamparas corredizas, batientes y fijas para duchas y bañeras. Vidrio templado de seguridad 6mm y 8mm, marcos de aluminio o sin marco.</p>
+      <span class="product-tag">Ver más</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🪞</div>
+      <h3>ESPEJOS A MEDIDA</h3>
+      <p>Espejos decorativos, con luz LED integrada, retroiluminados y antiempañantes. Biseles, molduras y terminaciones a elección.</p>
+      <span class="product-tag">Ver más</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">💡</div>
+      <h3>ESPEJOS LED</h3>
+      <p>Iluminación perimetral o retroiluminación con encendido touch, regulador de intensidad y función antiempañante. Diseño moderno y funcional.</p>
+      <span class="product-tag">Ver más</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🏗️</div>
+      <h3>MAMPARAS DE VIDRIO</h3>
+      <p>Divisiones de ambientes, frentes de oficina y cerramientos de balcón. Vidrio templado, laminado o doble acristalamiento.</p>
+      <span class="product-tag">Ver más</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">⚙️</div>
+      <h3>HERRAJES Y ACCESORIOS</h3>
+      <p>Porta toallas, jaboneras, porta papel y accesorios de acero inoxidable para complementar cualquier instalación.</p>
+      <span class="product-tag">Ver más</span>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📐</div>
+      <h3>PROYECTOS ESPECIALES</h3>
+      <p>Cerramientos de piscinas, frentes de negocios y proyectos de arquitectura e interiorismo. Presupuesto a medida.</p>
+      <span class="product-tag">Consultar</span>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="why" id="nosotros">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag">Por qué elegirnos</div>
+      <h2 class="section-title">CALIDAD<br>SIN<br>VUELTAS</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <span class="why-num">01</span>
+          <div class="why-content">
+            <h4>Fabricación propia</h4>
+            <p>Controlamos cada etapa del proceso. Sin intermediarios, sin demoras. La calidad empieza desde el corte del vidrio.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">02</span>
+          <div class="why-content">
+            <h4>Instalación incluida</h4>
+            <p>Nuestro equipo instalador va a tu domicilio. No tercerizamos la colocación: lo hacemos nosotros, con garantía total.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">03</span>
+          <div class="why-content">
+            <h4>Medidas exactas</h4>
+            <p>Vamos a tomar las medidas en el lugar antes de fabricar. Cada proyecto es único y lo tratamos así.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">04</span>
+          <div class="why-content">
+            <h4>Respuesta rápida</h4>
+            <p>Presupuesto en menos de 24 horas. Entrega e instalación coordinada a conveniencia del cliente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-visual-text">PREMIUM<br>GLASS<br>DESIGN</div>
+      <div class="why-badge">
+        <div class="why-badge-dot"></div>
+        <div class="why-badge-text">
+          <strong>Vidrio templado certificado</strong> · Resistencia 5x superior al vidrio común
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process" id="proceso">
+  <div style="text-align:center; margin-bottom: 3.5rem;">
+    <div class="section-tag" style="justify-content:center;">Cómo trabajamos</div>
+    <h2 class="section-title">4 PASOS,<br>UN RESULTADO</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-circle"><span class="step-num">01</span></div>
+      <h4>Medición</h4>
+      <p>Vamos al lugar a tomar medidas exactas y asesorarte sobre el diseño más adecuado.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle"><span class="step-num">02</span></div>
+      <h4>Presupuesto</h4>
+      <p>En 24hs te enviamos el presupuesto detallado con materiales, terminaciones y plazos.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle"><span class="step-num">03</span></div>
+      <h4>Fabricación</h4>
+      <p>Fabricamos en nuestro taller con vidrio templado certificado y herrajes de primera calidad.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle"><span class="step-num">04</span></div>
+      <h4>Instalación</h4>
+      <p>Nuestro equipo instala y deja todo funcionando. Incluye limpieza y ajuste final.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="section-tag">Lo que dicen</div>
+  <h2 class="section-title">CLIENTES<br>SATISFECHOS</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">"La mampara quedó perfecta. Vinieron a medir, me dieron el presupuesto al día siguiente y la instalaron en menos de una semana. Muy prolijoooo el trabajo."</p>
+      <div class="review-author">
+        <div class="review-avatar">MG</div>
+        <div>
+          <div class="review-name">Marcela G.</div>
+          <div class="review-loc">Villa Urquiza, CABA</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">"Pedí un espejo con LED para mi baño remodelado. El resultado superó mis expectativas. El encendido touch es un lujo. Totalmente recomendable."</p>
+      <div class="review-author">
+        <div class="review-avatar">RL</div>
+        <div>
+          <div class="review-name">Rodrigo L.</div>
+          <div class="review-loc">Palermo, CABA</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-text">"Contraté para un proyecto de tres baños. El trato fue excelente desde el principio, precios competitivos y la calidad del vidrio es notoriamente superior."</p>
+      <div class="review-author">
+        <div class="review-avatar">CF</div>
+        <div>
+          <div class="review-name">Carolina F.</div>
+          <div class="review-loc">San Isidro, GBA Norte</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+  <h2>¿LISTO PARA<br><span>COTIZAR?</span></h2>
+  <p>Escribinos por WhatsApp y te respondemos en minutos. Presupuesto sin cargo ni compromiso.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" class="btn-primary">
+      💬 Escribir por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/mamparasema/" target="_blank" class="btn-secondary">
+      Ver trabajos en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="nav-logo">MAMPARA<span>SEMA</span></span>
+    <p>Fabricación e instalación de mamparas y espejos a medida. Calidad premium, garantía de fabricación y asesoramiento personalizado.</p>
+  </div>
+  <div class="footer-col">
+    <h5>Productos</h5>
+    <ul>
+      <li><a href="#">Mamparas de baño</a></li>
+      <li><a href="#">Espejos a medida</a></li>
+      <li><a href="#">Espejos LED</a></li>
+      <li><a href="#">Proyectos especiales</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5>Contacto</h5>
+    <ul>
+      <li><a href="https://wa.me/5491100000000" target="_blank">WhatsApp</a></li>
+      <li><a href="https://www.instagram.com/mamparasema/" target="_blank">Instagram</a></li>
+      <li><a href="#">Horarios de atención</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2026 Mampara S.E.M.A. — Todos los derechos reservados</span>
+  <span>Desarrollado por <a href="https://picasystems.com" style="color:var(--blue); text-decoration:none;">Agencia Pica System</a></span>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" class="wa-float">
+  💬 Presupuesto gratis
+</a>
+
+</body>
+</html>
