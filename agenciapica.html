@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agencia Pica — Estrategia. Enfoque. Resultados.</title>
+<meta name="description" content="Diseñamos e implementamos sistemas de IA a medida: calificación de leads, recupero de facturación, automatización de procesos. Diagnóstico gratuito. Estrategia. Enfoque. Resultados.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
+  :root {
+    --ink: #111111;
+    --paper: #FBFAF7;
+    --white: #ffffff;
+    --grey: #6b6b6b;
+    --line: #e6e4de;
+    --gold: #B8860B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', Arial, sans-serif; color: var(--ink); background: var(--paper); font-size: 16.5px; line-height: 1.65; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4, .display { font-family: 'Archivo', Arial, sans-serif; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== NAV ===== */
+  nav { position: sticky; top: 0; background: rgba(251,250,247,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 100; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { width: 36px; height: 36px; }
+  .brand .word { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 21px; letter-spacing: .5px; }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: #444; transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta { background: var(--ink); color: #fff !important; padding: 9px 20px; border-radius: 100px; font-weight: 600; transition: background .2s; }
+  .nav-cta:hover { background: #333; }
+  @media (max-width: 800px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ===== HERO ===== */
+  .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
+  .hero-mark { position: absolute; right: -60px; top: 40px; width: 480px; height: 480px; opacity: .05; pointer-events: none; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--grey); border: 1px solid var(--line); background: var(--white); padding: 7px 16px; border-radius: 100px; margin-bottom: 28px; }
+  .eyebrow b { color: var(--ink); }
+  .hero h1 { font-size: clamp(38px, 5.6vw, 64px); font-weight: 800; line-height: 1.04; letter-spacing: -2px; max-width: 820px; }
+  .hero p.lead { color: var(--grey); font-size: 19px; max-width: 620px; margin: 26px 0 36px; }
+  .ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; padding: 15px 32px; border-radius: 100px; font-weight: 700; font-family: 'Archivo', sans-serif; font-size: 15px; transition: transform .15s, background .2s, border-color .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-ink:hover { background: #333; }
+  .btn-line { border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-line:hover { background: var(--ink); color: #fff; }
+  .micro { font-size: 13.5px; color: var(--grey); margin-top: 18px; }
+  .micro b { color: var(--ink); }
+
+  .statbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: 70px; }
+  .statbar .cell { background: var(--white); padding: 24px 22px; }
+  .statbar .num { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 30px; letter-spacing: -1px; }
+  .statbar .lbl { font-size: 13px; color: var(--grey); margin-top: 2px; }
+
+  /* ===== SECCIONES ===== */
+  section { padding: 92px 0; }
+  .sec-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .sec-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1.3px; line-height: 1.1; max-width: 760px; }
+  .sec-sub { color: var(--grey); max-width: 640px; margin: 18px 0 50px; }
+
+  /* PROBLEMA */
+  .prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .prob { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 32px 28px; }
+  .prob .n { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 15px; color: var(--gold); margin-bottom: 16px; }
+  .prob h3 { font-size: 19px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 10px; }
+  .prob p { font-size: 14.5px; color: var(--grey); }
+
+  /* SOLUCIONES */
+  .sol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .sol { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 32px 28px; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s, border-color .2s; }
+  .sol:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(17,17,17,.07); border-color: #ccc; }
+  .sol .n { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 14px; color: var(--gold); margin-bottom: 14px; }
+  .sol h3 { font-size: 19px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 10px; }
+  .sol p { font-size: 14.5px; color: var(--grey); flex: 1; }
+  .sol .tag { margin-top: 18px; align-self: flex-start; font-size: 12px; font-weight: 600; color: #555; background: var(--paper); border: 1px solid var(--line); padding: 5px 13px; border-radius: 100px; }
+  .sol.adhoc { background: var(--ink); border-color: var(--ink); }
+  .sol.adhoc h3 { color: #fff; }
+  .sol.adhoc p { color: #9a9a9a; }
+  .sol.adhoc .n { color: var(--gold); }
+  .sol.adhoc .tag { background: rgba(255,255,255,.07); border-color: #3a3a3a; color: #ddd; }
+
+  /* TRANSFORMACIÓN A → B */
+  .ab { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 800px) { .ab { grid-template-columns: 1fr; } }
+  .ab-col { border-radius: 18px; padding: 34px 30px; }
+  .ab-a { background: var(--white); border: 1px solid var(--line); }
+  .ab-b { background: var(--ink); color: #fff; }
+  .ab-col h3 { font-size: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 20px; }
+  .ab-a h3 { color: var(--grey); }
+  .ab-b h3 { color: var(--gold); }
+  .ab-col ul { list-style: none; }
+  .ab-col li { padding: 9px 0 9px 28px; position: relative; font-size: 15px; border-bottom: 1px solid var(--line); }
+  .ab-b li { border-color: #2e2e2e; color: #ddd; }
+  .ab-col li:last-child { border-bottom: none; }
+  .ab-a li::before { content: '—'; position: absolute; left: 0; color: #bbb; }
+  .ab-b li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+  /* VERTICAL SALUD */
+  .salud-flex { display: grid; grid-template-columns: 1.1fr .9fr; gap: 44px; align-items: center; }
+  @media (max-width: 860px) { .salud-flex { grid-template-columns: 1fr; } }
+  .s-point { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .s-point:last-child { border-bottom: none; }
+  .s-dot { min-width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Archivo', sans-serif; font-size: 14px; flex-shrink: 0; }
+  .s-point h4 { font-size: 16.5px; font-weight: 700; margin-bottom: 3px; }
+  .s-point p { font-size: 14px; color: var(--grey); }
+  .salud-box { background: var(--ink); color: #fff; border-radius: 20px; padding: 38px 34px; }
+  .salud-box .big { font-family: 'Archivo', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -.8px; line-height: 1.2; margin-bottom: 14px; }
+  .salud-box .big em { color: var(--gold); font-style: normal; }
+  .salud-box p { color: #999; font-size: 14.5px; margin-bottom: 24px; }
+  .pill { display: inline-block; background: rgba(255,255,255,.06); border: 1px solid #3a3a3a; color: #ccc; font-size: 12.5px; font-weight: 600; padding: 5px 14px; border-radius: 100px; margin: 0 6px 8px 0; }
+  .btn-gold { background: var(--gold); color: #fff; }
+  .btn-gold:hover { background: #9a7009; }
+
+  /* PROCESO */
+  .proc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; counter-reset: paso; }
+  .proc { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px; }
+  .proc .n { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 30px; color: #e0ddd4; line-height: 1; margin-bottom: 14px; }
+  .proc h4 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .proc p { font-size: 14px; color: var(--grey); }
+
+  /* PRINCIPIOS */
+  .ppios { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .ppio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; }
+  .ppio { padding: 30px 28px; border-left: 1px solid var(--line); }
+  .ppio:first-child { border-left: none; }
+  @media (max-width: 980px) { .ppio { border-left: none; border-top: 1px solid var(--line); } .ppio:first-child { border-top: none; } }
+  .ppio h4 { font-size: 17px; font-weight: 800; letter-spacing: -.3px; margin-bottom: 8px; }
+  .ppio h4::before { content: '— '; color: var(--gold); }
+  .ppio p { font-size: 14.5px; color: var(--grey); }
+
+  /* QUIÉN SÍ / QUIÉN NO */
+  .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 800px) { .fit { grid-template-columns: 1fr; } }
+  .fit-col { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 30px 28px; }
+  .fit-col h4 { font-size: 16px; font-weight: 800; margin-bottom: 16px; }
+  .fit-col li { list-style: none; padding: 8px 0 8px 26px; position: relative; font-size: 14.5px; color: #444; }
+  .fit-si li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .fit-no li::before { content: '✕'; position: absolute; left: 0; color: #bbb; font-weight: 700; }
+  .fit-note { margin-top: 22px; font-size: 14px; color: var(--grey); font-style: italic; }
+
+  /* CTA FINAL */
+  .cta-final { background: var(--ink); color: #fff; text-align: center; padding: 100px 0; position: relative; overflow: hidden; }
+  .cta-final .mark { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 560px; height: 560px; opacity: .045; pointer-events: none; }
+  .cta-final h2 { font-size: clamp(30px, 4.6vw, 50px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.08; max-width: 780px; margin: 0 auto 18px; position: relative; }
+  .cta-final h2 em { color: var(--gold); font-style: normal; }
+  .cta-final p { color: #999; max-width: 540px; margin: 0 auto 38px; position: relative; }
+  .cta-final .ctas { justify-content: center; position: relative; }
+  .cta-final .btn-line { border-color: #555; color: #ddd; }
+  .cta-final .btn-line:hover { background: #fff; color: var(--ink); border-color: #fff; }
+  .cta-final .micro { color: #888; }
+
+  footer { background: #0b0b0b; color: #777; padding: 30px 0; font-size: 13px; }
+  .foot-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .foot-brand { display: flex; align-items: center; gap: 8px; color: #ccc; font-family: 'Archivo', sans-serif; font-weight: 800; }
+  .foot-brand svg { width: 22px; height: 22px; }
+
+  .fade { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .fade.vis { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGO SVG (símbolo: mano + carta de pica) ===== -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="pica-mark" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 56 v30 a26 26 0 0 0 26 26 h14 a26 26 0 0 0 26 -26 v-4"/>
+      <path d="M24 56 a15 15 0 0 1 15 -15 h4"/>
+      <rect x="43" y="8" width="44" height="66" rx="9"/>
+      <path d="M87 26 h7 a7 7 0 0 1 0 14 h-7"/>
+      <path d="M87 44 h10 a7 7 0 0 1 0 14 h-10"/>
+      <path d="M87 62 h7 a7 7 0 0 1 0 14 h-7"/>
+      <path d="M65 22 c8 10 13 14 13 21 a8 8 0 0 1 -13 6 a8 8 0 0 1 -13 -6 c0 -7 5 -11 13 -21 z" fill="currentColor" stroke="none"/>
+      <path d="M65 47 l-5.5 13 h11 z" fill="currentColor" stroke="none"/>
+    </g>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 120 120"><use href="#pica-mark"/></svg>
+      <span class="word">PICA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#soluciones">Soluciones</a>
+      <a href="#salud">Vertical Salud</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#principios">Principios</a>
+      <a href="#contacto" class="nav-cta">Agendá tu diagnóstico →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <svg class="hero-mark" viewBox="0 0 120 120"><use href="#pica-mark"/></svg>
+  <div class="wrap">
+    <div class="eyebrow"><b>AGENCIA PICA</b> · ESTRATEGIA. ENFOQUE. RESULTADOS.</div>
+    <h1>Automatizamos tu operación para que el negocio crezca sin que tengas que estar encima.</h1>
+    <p class="lead">Diseñamos e implementamos sistemas de IA a medida que toman las tareas que hoy te comen tiempo o plata — y las dejan corriendo solas, con tu equipo decidiendo donde importa.</p>
+    <div class="ctas">
+      <a class="btn btn-ink" href="#contacto">Agendá tu diagnóstico gratuito →</a>
+      <a class="btn btn-line" href="#proceso">Ver cómo trabajamos</a>
+    </div>
+    <div class="micro"><b>30 minutos</b> · Analizamos tu operación · Te decimos qué priorizar — aunque la respuesta sea "todavía no necesitás IA"</div>
+
+    <div class="statbar fade">
+      <div class="cell"><div class="num">24/7</div><div class="lbl">Tus sistemas trabajando, también de noche</div></div>
+      <div class="cell"><div class="num">100%</div><div class="lbl">Medible: cada peso y cada hora ahorrada</div></div>
+      <div class="cell"><div class="num">0</div><div class="lbl">Leads, reclamos o pedidos que se pierden</div></div>
+      <div class="cell"><div class="num">1 pág.</div><div class="lbl">Nuestras propuestas. Sin 40 slides de humo</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PROBLEMA ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">El problema</div>
+    <h2 class="sec-title">Casi nunca es falta de tecnología. Es no saber dónde meterla ni en qué orden.</h2>
+    <p class="sec-sub">Hay una herramienta nueva cada semana. Sin un diagnóstico real de tu operación, cualquier decisión es un tiro al aire.</p>
+    <div class="prob-grid">
+      <div class="prob fade">
+        <div class="n">01</div>
+        <h3>Tu equipo pierde horas en tareas repetidas</h3>
+        <p>Revisar planillas, cargar datos, responder lo mismo veinte veces, perseguir aprobaciones. No es un problema de gente: es un problema de diseño de procesos.</p>
+      </div>
+      <div class="prob fade">
+        <div class="n">02</div>
+        <h3>Crecés, pero la operación no escala</h3>
+        <p>Cada cliente nuevo genera más carga manual y la solución siempre termina siendo contratar a alguien más. El cuello de botella está en los procesos, no en las personas.</p>
+      </div>
+      <div class="prob fade">
+        <div class="n">03</div>
+        <h3>Hay plata que se pierde en silencio</h3>
+        <p>Leads que se enfrían sin respuesta, facturación que no se reclama, seguimientos que nadie hace. Lo que no se sistematiza, se pierde — todos los meses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUCIONES ===== -->
+<section id="soluciones" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Soluciones</div>
+    <h2 class="sec-title">Sistemas que resuelven problemas concretos</h2>
+    <p class="sec-sub">Estos son algunos de los sistemas que ya construimos. Si tu problema no está acá, lo diseñamos desde cero — es lo más común.</p>
+    <div class="sol-grid">
+      <div class="sol fade">
+        <div class="n">01</div>
+        <h3>Calificación automática de leads</h3>
+        <p>Conectamos tus fuentes (Meta Ads, MercadoLibre, portales) al CRM. Un bot de WhatsApp califica cada lead y tus vendedores reciben solo los que demostraron intención real, con resumen completo.</p>
+        <span class="tag">Inmobiliarias · Concesionarias · Servicios</span>
+      </div>
+      <div class="sol fade">
+        <div class="n">02</div>
+        <h3>Recupero de débitos de obras sociales</h3>
+        <p>Para prestadores de salud: leemos tus liquidaciones con IA, detectamos cada débito, armamos el reclamo con su documentación y lo seguimos hasta que la plata vuelve.</p>
+        <span class="tag">Clínicas · Diagnóstico · Laboratorios</span>
+      </div>
+      <div class="sol fade">
+        <div class="n">03</div>
+        <h3>Prospección y campañas por WhatsApp</h3>
+        <p>Campañas personalizadas a tu base de contactos con ritmo inteligente que cuida tu número. Cada envío registrado, cada respuesta a un pipeline de seguimiento.</p>
+        <span class="tag">Cualquier rubro con base de clientes</span>
+      </div>
+      <div class="sol fade">
+        <div class="n">04</div>
+        <h3>Automatización de procesos y documentos</h3>
+        <p>Lectura automática de PDFs, facturas y planillas; reportes que se arman solos; integraciones entre los sistemas que ya usás; alertas y aprobaciones por WhatsApp.</p>
+        <span class="tag">Administración · Operaciones · Back office</span>
+      </div>
+      <div class="sol fade">
+        <div class="n">05</div>
+        <h3>Marca y contenido con IA</h3>
+        <p>Agente entrenado en tu negocio: analiza tu nicho y competencia, define pilares de contenido y genera posts, carruseles y guiones listos para publicar.</p>
+        <span class="tag">Pymes · Comercios · Profesionales</span>
+      </div>
+      <div class="sol adhoc fade">
+        <div class="n">+</div>
+        <h3>Soluciones a medida</h3>
+        <p>Cada negocio tiene su cuello de botella propio. Contanos el tuyo: si el proceso se repite, se puede sistematizar. Diagnóstico previo sin costo, propuesta de una página.</p>
+        <a href="#contacto" class="tag">Contanos tu caso →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRANSFORMACIÓN ===== -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-eyebrow">La transformación</div>
+    <h2 class="sec-title">De dónde está tu operación hoy a dónde queda cuando terminamos</h2>
+    <p class="sec-sub"></p>
+    <div class="ab fade">
+      <div class="ab-col ab-a">
+        <h3>Hoy — Punto A</h3>
+        <ul>
+          <li>Procesos manuales que consumen horas todas las semanas</li>
+          <li>Leads y reclamos que se enfrían o se pierden sin que nadie lo note</li>
+          <li>Información repartida en planillas sueltas y cabezas de personas</li>
+          <li>Crecer significa contratar más gente para hacer lo mismo</li>
+          <li>Cero visibilidad: nadie sabe cuánto se pierde por mes</li>
+        </ul>
+      </div>
+      <div class="ab-col ab-b">
+        <h3>Al cierre — Punto B</h3>
+        <ul>
+          <li>El circuito corre solo, 24/7, integrado a lo que ya usás</li>
+          <li>Nada se pierde: cada lead, reclamo o pedido tiene estado y responsable</li>
+          <li>Tu equipo aprueba lo importante desde WhatsApp, en un toque</li>
+          <li>Escalás operación sin escalar estructura</li>
+          <li>Tablero en vivo y reporte mensual: resultados medidos, no prometidos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VERTICAL SALUD ===== -->
+<section id="salud" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-eyebrow">Vertical destacado · Salud</div>
+    <h2 class="sec-title">¿Sabés cuánto te debitaron las obras sociales este año?</h2>
+    <p class="sec-sub">Entre el 5% y el 15% de lo que facturás vuelve debitado. Lo que no se reclama dentro de los 30 días, prescribe. Nosotros lo detectamos, lo reclamamos y lo seguimos — automáticamente.</p>
+    <div class="salud-flex">
+      <div>
+        <div class="s-point fade">
+          <div class="s-dot">1</div>
+          <div><h4>Detección automática</h4><p>El sistema lee cada liquidación (PDF, Excel o portal), identifica cada débito con su motivo y calcula el vencimiento del reclamo.</p></div>
+        </div>
+        <div class="s-point fade">
+          <div class="s-dot">2</div>
+          <div><h4>Reclamo armado con IA</h4><p>Nota de refacturación según la normativa de cada financiador, con la documentación respaldatoria adjunta. Tu administrativo solo aprueba desde WhatsApp.</p></div>
+        </div>
+        <div class="s-point fade">
+          <div class="s-dot">3</div>
+          <div><h4>Seguimiento hasta el cobro</h4><p>Reiteración automática, tablero de recupero en vivo y reporte mensual para dirección. Ningún reclamo muere en silencio.</p></div>
+        </div>
+      </div>
+      <div class="salud-box fade">
+        <div class="big">Empezá con un <em>diagnóstico sin costo</em>.</div>
+        <p>Nos pasás las liquidaciones de los últimos 3 meses y te devolvemos el número exacto: cuánto te debitaron, cuánto era recuperable y cuánto ya prescribió. Si el número no te sorprende, ahí queda.</p>
+        <div style="margin-bottom:24px;">
+          <span class="pill">Confidencialidad firmada</span>
+          <span class="pill">Sin costo</span>
+          <span class="pill">En una semana</span>
+        </div>
+        <a class="btn btn-gold" href="#contacto">Pedir mi diagnóstico gratuito →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESO ===== -->
+<section id="proceso">
+  <div class="wrap">
+    <div class="sec-eyebrow">Cómo trabajamos</div>
+    <h2 class="sec-title">Cuatro pasos. Empezamos por tu negocio, no por la tecnología.</h2>
+    <p class="sec-sub">Si antes de meter IA hay que ordenar procesos, te lo decimos — aunque eso signifique perder la venta.</p>
+    <div class="proc-grid">
+      <div class="proc fade">
+        <div class="n">01</div>
+        <h4>Diagnóstico</h4>
+        <p>Entendemos cómo opera tu negocio de verdad: dónde está la fricción, cuánto cuesta y qué impacto tendría resolverlo. Con tus datos, no con supuestos.</p>
+      </div>
+      <div class="proc fade">
+        <div class="n">02</div>
+        <h4>Propuesta de una página</h4>
+        <p>Qué construimos, cuándo, con qué tecnología y cómo se mide. Una sola página, ejecutable. Sin presentaciones de 40 slides.</p>
+      </div>
+      <div class="proc fade">
+        <div class="n">03</div>
+        <h4>Piloto medido</h4>
+        <p>Sistema en producción, integrado a tus herramientas, evaluado 60 días contra línea de base. Si los números no lo justifican, no se continúa.</p>
+      </div>
+      <div class="proc fade">
+        <div class="n">04</div>
+        <h4>Operación y mejora</h4>
+        <p>El sistema queda corriendo con soporte, tablero en vivo y reporte mensual. Todo documentado: nos elegís, no nos necesitás.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRINCIPIOS ===== -->
+<section class="ppios" id="principios" style="padding:64px 0;">
+  <div class="wrap">
+    <div class="ppio-grid">
+      <div class="ppio fade">
+        <h4>Sin humo</h4>
+        <p>No prometemos lo que no podemos medir. Cada proyecto arranca con una línea de base y cierra con números comparados.</p>
+      </div>
+      <div class="ppio fade">
+        <h4>Humano donde importa</h4>
+        <p>La IA prepara, tu equipo decide. Nada importante sale sin aprobación de una persona — desde WhatsApp, en un toque.</p>
+      </div>
+      <div class="ppio fade">
+        <h4>El riesgo lo asumimos nosotros</h4>
+        <p>En proyectos de recupero, la parte principal del fee es porcentaje de lo recuperado. Si no recuperás, no lo pagás.</p>
+      </div>
+      <div class="ppio fade">
+        <h4>Tus datos, protegidos</h4>
+        <p>Confidencialidad firmada antes de ver un archivo, infraestructura controlada y cumplimiento de la Ley 25.326.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIÉN SÍ / QUIÉN NO ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow">Antes de escribirnos</div>
+    <h2 class="sec-title">A quién le sirve trabajar con Pica</h2>
+    <p class="sec-sub"></p>
+    <div class="fit fade">
+      <div class="fit-col fit-si">
+        <h4>✓ Te va a servir si…</h4>
+        <ul>
+          <li>Tu negocio ya vende y tiene procesos que se repiten todos los días</li>
+          <li>Hay tareas manuales que te comen horas o plata que se pierde sin control</li>
+          <li>Hay un decisor real con ganas de involucrarse en el diagnóstico</li>
+          <li>Preferís un piloto medido antes que una promesa grandilocuente</li>
+        </ul>
+      </div>
+      <div class="fit-col fit-no">
+        <h4>✕ No te va a servir si…</h4>
+        <ul>
+          <li>Buscás "ponerle IA" al negocio porque está de moda</li>
+          <li>Querés instalar una herramienta enlatada y olvidarte</li>
+          <li>No hay procesos definidos sobre los que trabajar</li>
+          <li>Nadie del equipo puede dedicarle ni una hora por semana</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fit-note">Si no encaja, te lo decimos en la primera llamada. Sin vueltas.</p>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final" id="contacto">
+  <svg class="mark" viewBox="0 0 120 120" style="color:#fff;"><use href="#pica-mark"/></svg>
+  <div class="wrap">
+    <h2>Si tu operación te está costando tiempo, plata o cabeza, <em>en 30 minutos lo vemos juntos.</em></h2>
+    <p>No es una demo. Es una conversación real sobre tu negocio: dónde está el problema, qué se puede resolver y si tiene sentido trabajar juntos.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20con%20Agencia%20Pica" target="_blank" rel="noopener">Escribinos por WhatsApp →</a>
+      <a class="btn btn-line" href="mailto:tobiasayala11@gmail.com?subject=Diagn%C3%B3stico%20Agencia%20Pica">Mandanos un mail</a>
+    </div>
+    <div class="micro">30 minutos · Sin compromiso · 100% gratuito</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <svg viewBox="0 0 120 120" style="color:#ccc;"><use href="#pica-mark"/></svg>
+      PICA <span style="font-weight:400; color:#777; margin-left:6px;">· Estrategia. Enfoque. Resultados.</span>
+    </div>
+    <div>© 2026 Agencia Pica · Buenos Aires, Argentina · tobiasayala11@gmail.com</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } }), { threshold: .1 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
