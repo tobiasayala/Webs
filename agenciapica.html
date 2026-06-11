@@ -161,6 +161,11 @@
 
   .fade { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
   .fade.vis { opacity: 1; transform: none; }
+
+  /* ===== WHATSAPP FLOTANTE ===== */
+  .wsp-float { position: fixed; bottom: 22px; right: 22px; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.22); z-index: 200; transition: transform .15s, box-shadow .2s; }
+  .wsp-float:hover { transform: scale(1.08); box-shadow: 0 8px 26px rgba(0,0,0,.3); }
+  .wsp-float svg { width: 32px; height: 32px; fill: #fff; }
 </style>
 </head>
 <body>
@@ -192,7 +197,7 @@
       <a href="#salud">Vertical Salud</a>
       <a href="#proceso">Cómo trabajamos</a>
       <a href="#principios">Principios</a>
-      <a href="#contacto" class="nav-cta">Agendá tu diagnóstico →</a>
+      <a href="https://calendly.com/tobiasayala/30min" target="_blank" rel="noopener" class="nav-cta">Agendá tu diagnóstico →</a>
     </div>
   </div>
 </nav>
@@ -205,7 +210,7 @@
     <h1>Automatizamos tu operación para que el negocio crezca sin que tengas que estar encima.</h1>
     <p class="lead">Diseñamos e implementamos sistemas de IA a medida que toman las tareas que hoy te comen tiempo o plata — y las dejan corriendo solas, con tu equipo decidiendo donde importa.</p>
     <div class="ctas">
-      <a class="btn btn-ink" href="#contacto">Agendá tu diagnóstico gratuito →</a>
+      <a class="btn btn-ink" href="https://calendly.com/tobiasayala/30min" target="_blank" rel="noopener">Agendá tu diagnóstico gratuito →</a>
       <a class="btn btn-line" href="#proceso">Ver cómo trabajamos</a>
     </div>
     <div class="micro"><b>30 minutos</b> · Analizamos tu operación · Te decimos qué priorizar — aunque la respuesta sea "todavía no necesitás IA"</div>
@@ -450,7 +455,8 @@
     <h2>Si tu operación te está costando tiempo, plata o cabeza, <em>en 30 minutos lo vemos juntos.</em></h2>
     <p>No es una demo. Es una conversación real sobre tu negocio: dónde está el problema, qué se puede resolver y si tiene sentido trabajar juntos.</p>
     <div class="ctas">
-      <a class="btn btn-gold" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20con%20Agencia%20Pica" target="_blank" rel="noopener">Escribinos por WhatsApp →</a>
+      <a class="btn btn-gold" href="https://calendly.com/tobiasayala/30min" target="_blank" rel="noopener">Agendá tu diagnóstico →</a>
+      <a class="btn btn-line" href="https://wa.me/5491163213887?text=Hola%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20con%20Agencia%20Pica" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
       <a class="btn btn-line" href="mailto:tobiasayala11@gmail.com?subject=Diagn%C3%B3stico%20Agencia%20Pica">Mandanos un mail</a>
     </div>
     <div class="micro">30 minutos · Sin compromiso · 100% gratuito</div>
@@ -466,6 +472,10 @@
     <div>© 2026 Agencia Pica · Buenos Aires, Argentina · tobiasayala11@gmail.com</div>
   </div>
 </footer>
+
+<a class="wsp-float" href="https://wa.me/5491163213887?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Agencia%20Pica" target="_blank" rel="noopener" aria-label="Chateá por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.04 3C9.02 3 3.32 8.7 3.32 15.72c0 2.24.59 4.43 1.71 6.36L3.2 28.8l6.88-1.8a12.66 12.66 0 0 0 5.96 1.52h.01c7.01 0 12.72-5.7 12.72-12.72 0-3.4-1.32-6.6-3.72-9A12.65 12.65 0 0 0 16.04 3zm0 23.38h-.01c-1.9 0-3.76-.51-5.38-1.47l-.39-.23-4.08 1.07 1.09-3.98-.25-.41a10.55 10.55 0 0 1-1.62-5.64c0-5.83 4.75-10.58 10.59-10.58 2.83 0 5.48 1.1 7.48 3.1a10.52 10.52 0 0 1 3.1 7.49c0 5.83-4.75 10.58-10.58 10.58zm5.8-7.92c-.32-.16-1.88-.93-2.17-1.04-.29-.1-.5-.16-.72.16-.21.32-.82 1.04-1 1.25-.19.21-.37.24-.69.08-.32-.16-1.34-.5-2.56-1.58-.95-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.72-1.72-.98-2.36-.26-.62-.52-.54-.72-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.65 0 1.56 1.14 3.07 1.3 3.29.16.21 2.25 3.43 5.45 4.81.76.33 1.36.53 1.82.67.77.25 1.46.21 2.01.13.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37z"/></svg>
+</a>
 
 <script>
   const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } }), { threshold: .1 });
