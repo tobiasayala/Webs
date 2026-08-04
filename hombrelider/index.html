@@ -963,6 +963,9 @@
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <script>
+    // ⚠️ Reemplazá esta URL con la que obtenés al deployar el Apps Script
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyl_I2KWUtO3gBDKTCXVDY9hEKLTpH-26jfvV2yHyxgIcT3kmun7oe1R4gQPqRtU23r/exec';
+
     // Modal
     function openScheduler() {
       document.getElementById('schedulerModal').classList.add('open');
@@ -970,10 +973,36 @@
     function closeScheduler() {
       document.getElementById('schedulerModal').classList.remove('open');
     }
+
     function submitScheduler() {
+      const nombre    = document.getElementById('sched-name').value.trim();
+      const email     = document.getElementById('sched-email').value.trim();
+      const telefono  = document.getElementById('sched-whatsapp').value.trim();
+
+      if (!nombre || !email) {
+        alert('Por favor completá tu nombre y email.');
+        return;
+      }
+
+      // Enviar al Google Sheet (fire-and-forget)
+      if (SHEET_URL !== 'PEGAR_URL_APPS_SCRIPT_AQUI') {
+        fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, telefono })
+        }).catch(() => {});
+      }
+
       closeScheduler();
-      Calendly.initPopupWidget({ url: 'https://calendly.com/tobiasayala/30min' });
+
+      // Abrir Calendly con datos pre-cargados
+      const calendlyUrl = 'https://calendly.com/tobiasayala/30min'
+        + '?name=' + encodeURIComponent(nombre)
+        + '&email=' + encodeURIComponent(email);
+      Calendly.initPopupWidget({ url: calendlyUrl });
     }
+
     document.getElementById('schedulerModal').addEventListener('click', function(e) {
       if (e.target === this) closeScheduler();
     });
